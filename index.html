@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Favicon Visibility API</title>
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+
+    <script type="text/javascript">
+
+    let hidden;
+    let visibilityChange;
+    if (typeof document.hidden !== "undefined") {
+        hidden = "hidden";
+        visibilityChange = "visibilitychange";
+    } else if (typeof document.msHidden !== "undefined") {
+        hidden = "msHidden";
+        visibilityChange = "msvisibilitychange";
+    } else if (typeof document.webkitHidden !== "undefined") {
+        hidden = "webkitHidden";
+        visibilityChange = "webkitvisibilitychange";
+    }
+
+    const link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+
+
+    function handleVisibilityChange() {
+        if (document[hidden]) {
+            link.href = 'favicon-blue.ico';
+        } else {
+            link.href = 'favicon.ico';
+        }
+    }
+
+    document.addEventListener(visibilityChange, handleVisibilityChange, false);
+    </script>
+
+</body>
+</html>
