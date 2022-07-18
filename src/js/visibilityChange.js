@@ -21,7 +21,7 @@ if (!link) {
 
 function handleVisibilityChange() {
     if (document[hidden]) {
-        link.href = './src/ico/favicon-blue.ico';
+        link.href = './src/ico/favicon-red.ico';
         console.log(link.href)
 
     } else {
